@@ -10,8 +10,8 @@ SRCS :=	ft_strlen.s \
 
 OBJS := $(SRCS:%.s=%.o)
 
-ASMFLAGS := -f elf64 -g
-CFLAGS := -Wall -Werror -Wextra -g
+ASMFLAGS := -f elf64
+CFLAGS := -Wall -Werror -Wextra
 
 $(NAME): $(OBJS)
 	ar rcs $(NAME) $(OBJS)
@@ -32,7 +32,7 @@ fclean: clean
 
 re: fclean all
 
-test: $(OBJS) main.o
-	gcc $(CFLAGS) $(OBJS) main.o -o $(TEST_NAME)
+test: $(NAME) main.o
+	gcc $(CFLAGS) main.o $(NAME) -o $(TEST_NAME)
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re test
